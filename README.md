@@ -1,16 +1,22 @@
 # Collection of code developed by me to solve tests while I practice some coding skills: Python, SQL, R
 
 Content:
-* [Final Quiz Answer - Learn Python Basics for Data Analysis](#python-basics)
-     - [Question X](#question-x)
-     - [Question Y](#question-y)
-     - [Question Z](#question-z)
-* [Weekly Python Challenge #27 by Data in Motion LLC](#python-27)
+* [Python](#python)
+     - [Final Quiz Answer - Learn Python Basics for Data Analysis](#python-basics)
+          - [Question X](#question-x)
+          - [Question Y](#question-y)
+          - [Question Z](#question-z)
+     - [Weekly Python Challenge #27 by Data in Motion LLC](#python-27)
+* [MYSQL](#sql)
+     - [# MySQL - Weekly SQL Challenge #27 by Data in Motion LLC on LeetCode](#sql-27)
+
+<a id="python"></a>
+## Python
 
 <a id="python-basics"></a>
-## Final Quiz Answer - Learn Python Basics for Data Analysis
+### Final Quiz Answer - Learn Python Basics for Data Analysis
 <a id="question-x"></a>
-### Question X:
+#### Question X:
 Consider the following experiment:
 
 A normally-balanced die (with six faces) is thrown 10,000 times. Among these 10,000 throws, 1,000 are taken at random.
@@ -41,12 +47,12 @@ for ia in range(nExp):
 print(sum(mexperiment)/len(mexperiment))
 print(sum(nexperiment)/len(nexperiment))
 ```
-#### Results:
+##### Results:
 * m = apróx 1/6
 * n = apróx 1/6
 
 <a id="question-y"></a>
-### Question Y:
+#### Question Y:
 Let's consider two games of chance: 
 
 The next two questions will be based on these two sets.
@@ -102,12 +108,12 @@ else:
   print("Loss")
 ```
 
-#### Results:
+##### Results:
 * Loss
 * Loss
 
 <a id="question-z"></a>
-### Question Z:
+#### Question Z:
 We will now mix the two games presented in the previous question! Effectively, at each turn, we now flip a coin which is balanced! If you have tails, you play game A, otherwise you play game B.
 
 It is assumed that the player has $1,000 as starting capital.
@@ -140,11 +146,11 @@ if MoneyCOp > 1000:
 else:
   print("Loss")
 ```
-#### Results:
+##### Results:
 * Win
 
 <a id="python-27"></a>
-## Weekly Python Challenge #27 by Data in Motion LLC
+### Weekly Python Challenge #27 by Data in Motion LLC
 
 Question
 Characters and ASCII Code Dictionary
@@ -173,11 +179,80 @@ to_dictXSM(["^"])
 to_dictXSM([])
 ```
 
-#### Results:
+##### Results:
 * {'a': 97, 'b': 98, 'c': 99}
 * {'^': 94}
 * {}
 
+<a id="sql"></a>
+## MySQL
+<a id="sql-27"></a>
+### MySQL - Weekly SQL Challenge #27 by Data in Motion LLC on LeetCode
+
+Given the following Tables:
+
+Table: Users
+Column Name     | Type    
+--------------- | --------
+ user_id        | int     
+ join_date      | date    
+ favorite_brand | varchar 
+
+user_id is the primary key of this table.
+This table has the info of the users of an online shopping website where users can sell and buy items.
+ 
+
+Table: Orders
+ Column Name   | Type    
+---------------|---------
+ order_id      | int     
+ order_date    | date    
+ item_id       | int     
+ buyer_id      | int     
+ seller_id     | int     
+
+order_id is the primary key of this table.
+item_id is a foreign key to the Items table.
+buyer_id and seller_id are foreign keys to the Users table.
+ 
+
+Table: Items
+ Column Name   | Type    
+---------------|---------
+ item_id       | int     
+ item_brand    | varchar 
+
+item_id is the primary key of this table.
+ 
+
+Write an SQL query to find for each user, the join date and the number of orders they made as a buyer in 2019.
+Return the result table in any order.
+
+The query result format is in the following example.
+Example 1:
+Output: 
+ buyer_id  | join_date  | orders_in_2019 
+-----------|------------|----------------
+ 1         | 2018-01-01 | 1              
+ 2         | 2018-02-09 | 2              
+ 3         | 2018-01-19 | 0              
+ 4         | 2018-05-21 | 0              
+
+
+My answer:
+```{}
+SELECT 
+    Users.user_id as buyer_id,
+    Users.join_date,
+    Count(order_id) AS orders_in_2019
+FROM Users
+LEFT JOIN Orders ON Users.user_id = Orders.buyer_id
+AND year(order_date) = 2019
+GROUP BY Users.user_id
+```
+
+##### Results:
+* Approved by LeedCode
+
 
 #####To be continued..😉
-{'^': 94}
