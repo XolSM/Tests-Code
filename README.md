@@ -3,7 +3,9 @@
 Content:
 * [Final Quiz Answer - Learn Python Basics for Data Analysis](#python-basics)
      - [Question X](#question-x)
-     - [Question Y](#question-x)
+     - [Question Y](#question-y)
+     - [Question Z](#question-z)
+* [Weekly Python Challenge #27 by Data in Motion LLC](#python-27)
 
 <a id="python-basics"></a>
 ## Final Quiz Answer - Learn Python Basics for Data Analysis
@@ -39,6 +41,9 @@ for ia in range(nExp):
 print(sum(mexperiment)/len(mexperiment))
 print(sum(nexperiment)/len(nexperiment))
 ```
+#### Results:
+* m = apróx 1/6
+* n = apróx 1/6
 
 <a id="question-y"></a>
 ### Question Y:
@@ -75,7 +80,6 @@ if MoneyA > 1000:
   print("Win")
 else:
   print("Loss")
-print(MoneyA)
 
 #Game B
 nB = 100000
@@ -96,5 +100,84 @@ if MoneyB > 1000:
   print("Win")
 else:
   print("Loss")
-print(MoneyB)
 ```
+
+#### Results:
+* Loss
+* Loss
+
+<a id="question-z"></a>
+### Question Z:
+We will now mix the two games presented in the previous question! Effectively, at each turn, we now flip a coin which is balanced! If you have tails, you play game A, otherwise you play game B.
+
+It is assumed that the player has $1,000 as starting capital.
+
+After playing 1,000,000 games, what is the status of the game, from the player's point of view?
+
+**The game is Won.**
+
+```{}
+nCOp = 1000000
+MoneyCOp = 1000
+pCB1=0.09
+pCB2=0.74
+pCA3=0.49
+for i in range(nCOp):
+  flips = [flip(0.5)]
+  if flips.count('T') == 0:
+    if MoneyCOp % 3 == 0:
+      pCOp = pCB1
+    else:
+      pCOp = pCB2
+  else:
+    pCOp = pCA3
+  if flip(pCOp) == "T":
+    MoneyCOp += 1
+  else:
+    MoneyCOp -= 1
+if MoneyCOp > 1000:
+  print("Win")
+else:
+  print("Loss")
+```
+#### Results:
+* Win
+
+<a id="python-27"></a>
+## Weekly Python Challenge #27 by Data in Motion LLC
+
+Question
+Characters and ASCII Code Dictionary
+
+Write a function that transforms a list of characters into a list of dictionaries, where: The keys are the characters themselves. The values are the ASCII codes of those characters.
+
+Examples to_dict(["a", "b", "c"]) ➞ [{"a": 97}, {"b": 98}, {"c": 99}]
+to_dict(["^"]) ➞ [{"^": 94}]
+to_dict([]) ➞ []
+
+```{}
+import string
+def to_dictXSM(input = [""]):
+  dictXSM = {}
+  for UbicInList in input:
+    dictXSM[UbicInList] = ord(UbicInList)
+  return print(dictXSM)#Output
+```
+
+Test:
+```{}
+to_dictXSM(["a", "b", "c"])
+
+to_dictXSM(["^"])
+
+to_dictXSM([])
+```
+
+#### Results:
+* {'a': 97, 'b': 98, 'c': 99}
+* {'^': 94}
+* {}
+
+
+#####To be continued..😉
+{'^': 94}
